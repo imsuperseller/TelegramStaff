@@ -1,6 +1,5 @@
 import json
 import importlib.util
-from flask import request, abort
 import time
 import logging
 import openai
@@ -9,30 +8,11 @@ from packaging import version
 
 CUSTOM_API_KEY = os.environ.get('CUSTOM_API_KEY')
 
-
-# Function to retrieve the relation between the thread ID and the telegram ID
-# Change that to a database approach in case you want to scale
-def load_chat_mapping():
-  try:
-    with open('chat_to_thread_id.json', 'r') as file:
-      return json.load(file)
-  except FileNotFoundError:
-    return {}
-
-
-# Function to store the relation between the thread ID and the telegram ID
-# Change that to a database approach in case you want to scale
-def save_chat_mapping(chat_to_thread_id):
-  with open('chat_to_thread_id.json', 'w') as file:
-    json.dump(chat_to_thread_id, file)
-
-
 # Function to check API key
 def check_api_key():
   api_key = request.headers.get('X-API-KEY')
   if api_key != CUSTOM_API_KEY:
     abort(401)  # Unauthorized access
-
 
 # Check the current OpenAI version
 def check_openai_version():
@@ -44,7 +24,6 @@ def check_openai_version():
     )
   else:
     logging.info("OpenAI version is compatible.")
-
 
 # Process the actions that are initiated by the assistants API
 def process_tool_calls(client, thread_id, run_id, tool_data):
@@ -81,7 +60,6 @@ def process_tool_calls(client, thread_id, run_id, tool_data):
           logging.warning(f"Function {function_name} not found in tool data.")
       time.sleep(1)
 
-
 # Get all of the available resources
 def get_resource_file_ids(client):
   file_ids = []
@@ -94,7 +72,6 @@ def get_resource_file_ids(client):
           response = client.files.create(file=file, purpose='assistants')
           file_ids.append(response.id)
   return file_ids
-
 
 # Function to load tools from a file
 def load_tools_from_directory(directory):
