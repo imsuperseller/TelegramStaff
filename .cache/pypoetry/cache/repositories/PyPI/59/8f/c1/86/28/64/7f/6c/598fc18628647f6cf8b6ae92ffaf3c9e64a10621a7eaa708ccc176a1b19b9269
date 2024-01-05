@@ -1,0 +1,1 @@
+9999999999{"name": "django-nvd3", "version": "0.9.7", "summary": "Django NVD3 - Chart Library for d3.js", "requires_dist": ["python-nvd3==0.14.2"], "requires_python": null, "files": [{"file": "django-nvd3-0.9.7.tar.gz", "hash": "sha256:1ec0ba4c74fe84f4ce65d1246a4a471ddd51d7a2ed8f69c60d70229d41a06c63"}], "yanked": false, "_cache_version": "2.0.0"}

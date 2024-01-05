@@ -1,0 +1,1 @@
+9999999999{"name": "django-haystack", "version": "2.0.0", "summary": "Pluggable search for Django.", "requires_dist": null, "requires_python": null, "files": [{"file": "django-haystack-2.0.0.tar.gz", "hash": "sha256:b8adfffefc7229d7c59ded2f0ca43ee089d52499e6ddeb4552734b26287b8b64"}], "yanked": false, "_cache_version": "2.0.0"}

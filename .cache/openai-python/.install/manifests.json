@@ -1,0 +1,9 @@
+{
+  "installPath": "/home/runner/Assistants-in-Telegram/.cache/openai-python/.install",
+  "binaries": {
+    "marzano": {
+      "name": "marzano",
+      "release": "ec8d3ef0-b442-48d4-a42c-70da89a5a2a9"
+    }
+  }
+}

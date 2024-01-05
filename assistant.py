@@ -23,7 +23,7 @@ def create_assistant(client, tool_data):
     # Create the assistant
     assistant = client.beta.assistants.create(
         instructions=config.assistant_instructions,
-        model="gpt-4-1106-preview",
+        model="gpt-3.5-turbo-1106",
         tools=[{
             "type": "retrieval"
         }] + tool_data["tool_configs"],
