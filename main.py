@@ -14,12 +14,12 @@ core_functions.check_openai_version()
 # Initialize OpenAI client for GPT interactions
 OPENAI_API_KEY = os.getenv('OPENAI_API_KEY')
 if not OPENAI_API_KEY:
-  raise ValueError("No OpenAI API key found in environment variables")
+    raise ValueError("No OpenAI API key found in environment variables")
 
 # Initialize the Telegram bot
 TELEGRAM_TOKEN = os.getenv('TELEGRAM_TOKEN')
 if not TELEGRAM_TOKEN:
-  raise ValueError("No Telegram token found in environment variables")
+    raise ValueError("No Telegram token found in environment variables")
 
 bot = TeleBot(TELEGRAM_TOKEN, parse_mode='Markdown')
 
@@ -33,19 +33,15 @@ assistant_id = assistant.create_assistant()
 # Handler for the '/start' command
 @bot.message_handler(commands=['start'])
 def send_welcome(message):
-  bot.reply_to(message,
-               "Hello! I am your Lead Assistant. How can I assist you today?")
+    bot.reply_to(message, "Hello! I am your Lead Assistant. How can I assist you today?")
 
 
 # Handler for all other messages
 @bot.message_handler(func=lambda message: True)
 def handle_message(message):
-  bot.send_message(
-      message.chat.id, "You said: " + message.text +
-      "\nLet me see how I can help you with that.")
+    response = assistant.ask_assistant(assistant_id, message.text)
+    bot.send_message(message.chat.id, response['message']['content'])
 
 
 # Start the bot and continuously check for new messages
 bot.polling()
-
-# Note: No need for Flask code, as bot.polling() will keep the program running and listening for new messages.
