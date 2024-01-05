@@ -12,9 +12,14 @@ logging.basicConfig(level=logging.INFO)
 core_functions.check_openai_version()
 
 # Initialize OpenAI client for GPT interactions
+import openai
+
 OPENAI_API_KEY = os.getenv('OPENAI_API_KEY')
 if not OPENAI_API_KEY:
     raise ValueError("No OpenAI API key found in environment variables")
+
+openai.api_key = OPENAI_API_KEY
+
 
 # Initialize the Telegram bot
 TELEGRAM_TOKEN = os.getenv('TELEGRAM_TOKEN')
